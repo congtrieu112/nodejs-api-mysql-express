@@ -26,6 +26,11 @@ class App {
         this.app.use(bodyParser.urlencoded({ extended: false }));
         // serving static files 
         this.app.use(express.static('public'));
+        this.app.use((req, res, next) =>{
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+          });
     }
 
     private mongoSetup(): void{
@@ -45,13 +50,10 @@ class App {
                 __dirname + "/entity/*.ts"
             ],
             synchronize: true,
-            logging: false
+            logging: true
         }).then(async connection => {
             console.log('connected',__dirname)
-            let user = new Users();
-            user.firstName = "dinhcong"; 
-            user.lastName = "trieu"; 
-            await connection.manager.save(user);
+           
         })
     }
 

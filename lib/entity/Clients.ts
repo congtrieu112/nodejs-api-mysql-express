@@ -1,5 +1,4 @@
-import {Entity, Column, PrimaryGeneratedColumn} from "typeorm";
-
+import {Entity, Column, PrimaryGeneratedColumn,CreateDateColumn,UpdateDateColumn} from "typeorm";
 @Entity()
 export class Clients {
 
@@ -24,7 +23,10 @@ export class Clients {
     @Column()
     status: boolean;
 
-    @Column()
-    timestamp: Date;
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
   
 }

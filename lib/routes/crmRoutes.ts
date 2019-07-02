@@ -1,10 +1,11 @@
 import {Request, Response, NextFunction} from "express";
 import { ContactController } from "../controllers/crmController";
-
+import {ClientController} from "../controllers/ClientController";
 export class Routes { 
     
-    public contactController: ContactController = new ContactController() 
-    
+    public contactController: ContactController = new ContactController() ;
+    public clientContrller: ClientController = new ClientController();    
+
     public routes(app): void {   
         
         app.route('/')
@@ -13,6 +14,11 @@ export class Routes {
                 message: 'GET request successfulll!!!!'
             })
         })
+
+        //clients
+        app.route('/clients')
+        .get(this.clientContrller.getAllClients)
+        .post(this.clientContrller.saveClients)
         
         // Contact 
         app.route('/contact')
