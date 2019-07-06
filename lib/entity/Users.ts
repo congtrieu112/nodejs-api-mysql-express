@@ -1,6 +1,7 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Unique,Entity, PrimaryGeneratedColumn, Column,CreateDateColumn,UpdateDateColumn} from "typeorm";
 
 @Entity()
+@Unique(["username","email"])
 export class Users {
 
     @PrimaryGeneratedColumn()
@@ -13,9 +14,21 @@ export class Users {
     lastName: string;
 
     @Column()
-    age: number;
-    
+    username: string;
+
+    @Column({select: false})
+    password: string;
+
     @Column()
-    timestamp: Date;
+    email: string;
+
+    @Column({default: "2000-01-01 00:00:00"})
+    sex: Date;
+    
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
 
 }

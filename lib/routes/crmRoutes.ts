@@ -1,10 +1,14 @@
 import {Request, Response, NextFunction} from "express";
 import { ContactController } from "../controllers/crmController";
-import {ClientController} from "../controllers/ClientController";
+import {ClientsController} from "../controllers/ClientsController";
+import {ServicesController} from "../controllers/ServicesController";
+import {UserServicesController} from "../controllers/UserServicesController";
 export class Routes { 
     
     public contactController: ContactController = new ContactController() ;
-    public clientContrller: ClientController = new ClientController();    
+    public clientsContrller: ClientsController = new ClientsController(); 
+    public servicesController: ServicesController = new ServicesController(); 
+    public userServicesController: UserServicesController = new UserServicesController();   
 
     public routes(app): void {   
         
@@ -17,8 +21,21 @@ export class Routes {
 
         //clients
         app.route('/clients')
-        .get(this.clientContrller.getAllClients)
-        .post(this.clientContrller.saveClients)
+        .get(this.clientsContrller.getAllClients)
+        .post(this.clientsContrller.saveClients)
+        .delete(this.clientsContrller.deleteClients)
+
+        //services
+        app.route('/services')
+        .get(this.servicesController.getAllServices)
+        .post(this.servicesController.saveServices)
+        .delete(this.servicesController.deleteServices)
+
+        //user-services
+        app.route('/user-services')
+        .get(this.userServicesController.getAllUserServices)
+        .post(this.userServicesController.saveUserServices)
+        .delete(this.userServicesController.deleteUserServices)
         
         // Contact 
         app.route('/contact')

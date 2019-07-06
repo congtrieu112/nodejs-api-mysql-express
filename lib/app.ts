@@ -6,6 +6,7 @@ import * as mongoose from "mongoose";
 import {createConnection} from "typeorm";
 // import { Clients } from "./entity/clients";
 import { Users } from "./entity/Users";
+import { join } from "path";
 
 class App {
 
@@ -50,7 +51,8 @@ class App {
                 __dirname + "/entity/*.ts"
             ],
             synchronize: true,
-            logging: true
+            logging: true,
+            charset:"utf8mb4_general_ci"
         }).then(async connection => {
             console.log('connected',__dirname)
            
