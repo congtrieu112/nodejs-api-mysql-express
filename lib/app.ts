@@ -51,7 +51,7 @@ class App {
                 __dirname + "/entity/*.ts"
             ],
             synchronize: true,
-            logging: true,
+            // logging: true,
             charset: "utf8mb4_general_ci"
         }).then(async connection => {
             console.log('connected', __dirname)
