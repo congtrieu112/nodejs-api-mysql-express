@@ -1,6 +1,5 @@
 import {Unique,Entity, Column, PrimaryGeneratedColumn,CreateDateColumn,UpdateDateColumn} from "typeorm";
 @Entity()
-@Unique(["email","phone","username"])
 export class Clients {
 
     @PrimaryGeneratedColumn()
@@ -9,16 +8,16 @@ export class Clients {
     @Column()
     fullname: string;
 
-    @Column()
+    @Column({ unique: true})
     username: string;
 
-    @Column()
+    @Column({ unique: true})
     email: string;
 
     @Column({select: false})
     password: string;
 
-    @Column()
+    @Column({ unique: true})
     phone: string;
 
     @Column({default: "2000-01-01",type:"date"})

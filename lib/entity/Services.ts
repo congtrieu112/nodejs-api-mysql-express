@@ -1,12 +1,11 @@
 import {Unique,Entity, Column, PrimaryGeneratedColumn,CreateDateColumn,UpdateDateColumn} from "typeorm";
 @Entity()
-@Unique(["name"])
 export class Services {
 
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ unique: true})
     name: string;
 
     @Column()

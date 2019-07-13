@@ -40,7 +40,7 @@ export class ClientsController {
         emp.email = req.body.email;
         emp.phone = req.body.phone;
         emp.description = req.body.description;
-        emp.password = generate(req.body.password);
+        emp.password = req.body.password ? generate(req.body.password) : req.body.password;
         emp.status = req.body.status ;
         emp.birthday = req.body.birthday;
         if(req.body.id){
