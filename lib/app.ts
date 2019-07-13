@@ -44,7 +44,7 @@ class App {
             type: "mysql",
             host: "localhost",
             port: 3306,
-            username: "root",
+            username: "admin_quanly",
             password: "wANaV166",
             database: "admin_quanly",
             entities: [
