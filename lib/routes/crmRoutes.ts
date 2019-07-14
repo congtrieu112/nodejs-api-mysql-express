@@ -3,13 +3,14 @@ import { ContactController } from "../controllers/crmController";
 import {ClientsController} from "../controllers/ClientsController";
 import {ServicesController} from "../controllers/ServicesController";
 import {UserServicesController} from "../controllers/UserServicesController";
-import * as nodemailer from "nodemailer";
+import {MailController} from "../controllers/MailController";
 export class Routes { 
     
     public contactController: ContactController = new ContactController() ;
     public clientsContrller: ClientsController = new ClientsController(); 
     public servicesController: ServicesController = new ServicesController(); 
     public userServicesController: UserServicesController = new UserServicesController();   
+    public mailController: MailController = new MailController();
 
     public routes(app): void {   
         
@@ -22,45 +23,7 @@ export class Routes {
 
         //send-main
         app.route('/send-mails')
-        .get((req: Request, res: Response) => { 
-            var transporter =  nodemailer.createTransport({ // config mail server
-                // service: 'Gmail',
-                // auth: {
-                //     user: 'congtac.net@gmail.com',
-                //     pass: 'Myle@9012'
-                // }
-                host: 'smtp.zoho.com',
-                port: 465,
-                secure: true, //ssl
-                auth: {
-                        user:'thanhtoan@sanphamweb.com',
-                        pass:'AuS7MMZq8Iwt'//app 1- 1pz0vyNePHmT app 2- AuS7MMZq8Iwt  - default 'JcD2HRwN'
-                }
-            });
-            var mainOptions = { // thiết lập đối tượng, nội dung gửi mail
-                from: 'Sanphamweb.com <thanhtoan@sanphamweb.com>',
-                to: 'ittrjeu@gmail.com',
-                subject: 'Test Nodemailer',
-                text: 'You recieved message from ' ,
-                html: '<p>You have got a new message</b><ul><li>Username:' +  '</li><li>Email:'  + '</li><li>Username:' + '</li></ul>'
-            }
-            transporter.sendMail(mainOptions, function(err, info){
-                if (err) {
-                    console.log(err);
-                    res.status(200).send({
-                        message: err
-                    })
-                } else {
-                    console.log('Message sent: ' +  info.response);
-                    res.status(200).send({
-                        message: info.response
-                    })
-                }
-            });
-            // res.status(200).send({
-            //     message: 'GET request send mail successfulll!!!!'
-            // })
-        })
+        .post(this.mailController.sendMail)
 
         //clients
         app.route('/clients')
