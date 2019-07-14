@@ -20,6 +20,9 @@ export class UserServices {
     @Column({default: "2000-01-01 00:00:00"})
     dateExpires: Date;
 
+    @Column({default: "2000-01-01 00:00:00"})
+    dateRemind: Date;
+
     @Column()
     description: string;
 

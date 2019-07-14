@@ -41,12 +41,9 @@ export class UserServicesController {
         emp.services = req.body.services ;
         emp.dateRegister = req.body.dateRegister ;
         emp.dateExpires = req.body.dateExpires ;
+        emp.dateRemind = req.body.dateRemind ;
         emp.clients = req.body.clients ;
-
-
-
-      
-
+        
         if(req.body.id){
             emp.id = parseInt(req.body.id) ; 
         }
